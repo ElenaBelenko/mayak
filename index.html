@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Маяк Любви</title>
+<title>Маяк Любви — сайт знакомств вживую</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --rose: #D4A0B0;
   --rose-dark: #BE8A9A;
+  --rose-darker: #A87484;
   --rose-light: #EED0D8;
   --rose-lighter: #F8E8EC;
+  --rose-bright: #E0B0BE;
   --bg: #fdf8f6;
   --card: #ffffff;
   --border: #ecdde2;
@@ -28,7 +30,6 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
 
 .city-bar{background:var(--card);border-bottom:1px solid var(--border);padding:1rem;text-align:center}
 .city-select{padding:8px 16px;border:2px solid var(--border);border-radius:20px;font-family:'Raleway',sans-serif;font-size:14px;font-weight:600;color:var(--text);background:var(--bg);cursor:pointer}
-.city-online{font-size:13px;color:var(--muted);margin-left:1rem}
 
 .page{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
 .section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-bottom:.5rem;color:var(--text);text-align:center}
@@ -94,6 +95,8 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
 .photo-upload-label{position:absolute;bottom:0;right:0;background:var(--rose);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;border:3px solid #fff}
 .photo-upload-input{display:none}
 
+.zodiac-display{background:var(--rose-lighter);border:2px solid var(--rose-light);border-radius:12px;padding:12px;text-align:center;margin-top:8px;font-size:14px;color:var(--rose-dark);font-weight:600}
+
 .chat-messages{height:300px;overflow-y:auto;padding:1rem;background:var(--bg);border-radius:12px;border:2px solid var(--border);display:flex;flex-direction:column;gap:1rem;margin-bottom:1rem}
 .msg{display:flex;gap:1rem;align-items:flex-start}
 .msg.me{flex-direction:row-reverse}
@@ -109,6 +112,17 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--text);color:#fff;padding:1rem 1.5rem;border-radius:12px;font-size:14px;font-weight:700;z-index:2000;transform:translateY(80px);opacity:0;transition:all .3s}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:#4caf50}
+
+@media(max-width:600px){
+  .logo-svg{max-width:240px}
+  .section-title{font-size:26px}
+  .ideas-grid{grid-template-columns:1fr;gap:1rem}
+  .form-row{flex-direction:column}
+  .profile-btn{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:26px}
+  .reset-btn{bottom:1.5rem;left:1.5rem;padding:10px 16px;font-size:12px}
+  .modal{padding:1.5rem}
+  .city-select{max-width:100%}
+}
 </style>
 </head>
 <body>
@@ -148,7 +162,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
 </header>
 
 <div class="city-bar">
-  <span class="city-label">📍 Ваш город:</span>
+  <span style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-right:1rem">📍 Ваш город:</span>
   <select class="city-select" id="citySelect">
     <option value="msk">Москва</option><option value="spb">Санкт-Петербург</option>
     <option value="novosibirsk">Новосибирск</option><option value="ekb">Екатеринбург</option>
@@ -224,7 +238,6 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
     <option value="ivanivka">Ивановка</option><option value="bilhorod-dnistrovskyi">Белгород-Днестровский</option>
     <option value="reni">Рени</option><option value="vykove">Вилково</option>
   </select>
-  <span class="city-online"><span id="cityOnline">0 человек в Москве</span></span>
 </div>
 
 <div class="page">
@@ -261,7 +274,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
   </div>
 </div>
 
-<button class="profile-btn" onclick="openProfile()" title="Мой профиль"></button>
+<button class="profile-btn" onclick="openProfile()" title="Мой профиль">👤</button>
 <button class="reset-btn" onclick="resetData()" title="Сбросить все данные">🔄 Сброс</button>
 
 <div class="modal-overlay" id="profileModal">
@@ -276,12 +289,12 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
         <input type="file" id="photoUpload" class="photo-upload-input" accept="image/*" onchange="handlePhotoUpload(event)">
       </div>
     </div>
-    <div class="auth-form">
+    <div style="display:flex;flex-direction:column;gap:1rem">
       <div class="form-row">
         <div class="form-group"><label>Имя</label><input type="text" id="prof-name" placeholder="Ваше имя"></div>
         <div class="form-group"><label>Дата рождения</label><input type="date" id="prof-birthdate" onchange="updateZodiac()"></div>
       </div>
-      <div id="zodiacDisplay" style="background:var(--rose-lighter);border:2px solid var(--rose-light);border-radius:12px;padding:12px;text-align:center;margin-top:8px;font-size:14px;color:var(--rose-dark);font-weight:600;display:none">
+      <div id="zodiacDisplay" class="zodiac-display" style="display:none">
         <span id="zodiacIcon" style="font-size:24px;margin-right:8px"></span>
         <span id="zodiacText"></span>
       </div>
@@ -387,20 +400,20 @@ header{background:linear-gradient(135deg,var(--rose-lighter),var(--rose-light));
 <script>
 // БАЗОВЫЕ 14 ИДЕЙ - ВСЕГДА ПОКАЗЫВАЮТСЯ
 const BASE_IDEAS = [
-  {id:1, emoji:'', title:'Рыбалка на рассвете', sub:'Тишина и чай у воды', cat:'природа', participants:0, chat:[]},
+  {id:1, emoji:'🎣', title:'Рыбалка на рассвете', sub:'Тишина и чай у воды', cat:'природа', participants:0, chat:[]},
   {id:2, emoji:'🚴', title:'Велопрогулка', sub:'По набережной 10 км', cat:'спорт', participants:0, chat:[]},
-  {id:3, emoji:'🏛️', title:'Экскурсия по храмам', sub:'Загородная поездка', cat:'культура', participants:0, chat:[]},
+  {id:3, emoji:'️', title:'Экскурсия по храмам', sub:'Загородная поездка', cat:'культура', participants:0, chat:[]},
   {id:4, emoji:'🍳', title:'Кулинарный мастер-класс', sub:'Готовим итальянскую пасту', cat:'творчество', participants:0, chat:[]},
   {id:5, emoji:'🌿', title:'Эко-субботник', sub:'Уборка парка + чай', cat:'волонтёрство', participants:0, chat:[]},
   {id:6, emoji:'🐕', title:'Помощь приюту', sub:'Выгул собак', cat:'волонтёрство', participants:0, chat:[]},
-  {id:7, emoji:'', title:'Фотопрогулка', sub:'Красивые кадры города', cat:'творчество', participants:0, chat:[]},
+  {id:7, emoji:'📸', title:'Фотопрогулка', sub:'Красивые кадры города', cat:'творчество', participants:0, chat:[]},
   {id:8, emoji:'🎳', title:'Боулинг', sub:'Весело в компании', cat:'спорт', participants:0, chat:[]},
   {id:9, emoji:'🎲', title:'Настольные игры', sub:'В уютном антикафе', cat:'творчество', participants:0, chat:[]},
   {id:10, emoji:'☕', title:'Вечерние посиделки', sub:'Уютное кафе, живая музыка', cat:'еда', participants:0, chat:[]},
   {id:11, emoji:'🎤', title:'Караоке', sub:'Пой и знакомься', cat:'творчество', participants:0, chat:[]},
   {id:12, emoji:'🍕', title:'Пицца-пати', sub:'Готовим и едим вместе', cat:'еда', participants:0, chat:[]},
-  {id:13, emoji:'', title:'Бассейн', sub:'Плаваем и общаемся', cat:'спорт', participants:0, chat:[]},
-  {id:14, emoji:'🌲', title:'Посадка деревьев', sub:'Оставим след в городе', cat:'волонтёрство', participants:0, chat:[]}
+  {id:13, emoji:'🏊', title:'Бассейн', sub:'Плаваем и общаемся', cat:'спорт', participants:0, chat:[]},
+  {id:14, emoji:'', title:'Посадка деревьев', sub:'Оставим след в городе', cat:'волонтёрство', participants:0, chat:[]}
 ];
 
 let ideas = [];
@@ -411,18 +424,13 @@ let currentChatId = null;
 // ЗАГРУЗКА ДАННЫХ
 function loadData() {
   try {
-    // Загружаем пользовательские идеи (добавленные через форму)
     const saved = localStorage.getItem('mayak_user_ideas');
     const userIdeas = saved ? JSON.parse(saved) : [];
-    
-    // Базовые 14 идей ВСЕГДА есть
     ideas = BASE_IDEAS.concat(userIdeas);
     
-    // Загружаем участников
     const savedJoined = localStorage.getItem('mayak_joined');
     joinedIdeas = savedJoined ? JSON.parse(savedJoined) : [];
     
-    // Загружаем профиль
     const savedProfile = localStorage.getItem('mayak_profile');
     userProfile = savedProfile ? JSON.parse(savedProfile) : null;
   } catch (e) {
@@ -435,7 +443,6 @@ function loadData() {
 
 // СОХРАНЕНИЕ ДАННЫХ
 function saveData() {
-  // Сохраняем только пользовательские идеи (без базовых 14)
   const userIdeas = ideas.filter(i => i.id > 1000);
   localStorage.setItem('mayak_user_ideas', JSON.stringify(userIdeas));
   localStorage.setItem('mayak_joined', JSON.stringify(joinedIdeas));
@@ -462,15 +469,15 @@ function resetData() {
 const ZODIAC_SIGNS = [
   {name:'Козерог', icon:'♑', start:[1,1], end:[1,19]},
   {name:'Водолей', icon:'♒', start:[1,20], end:[2,18]},
-  {name:'Рыбы', icon:'', start:[2,19], end:[3,20]},
+  {name:'Рыбы', icon:'♓', start:[2,19], end:[3,20]},
   {name:'Овен', icon:'♈', start:[3,21], end:[4,19]},
   {name:'Телец', icon:'♉', start:[4,20], end:[5,20]},
-  {name:'Близнецы', icon:'', start:[5,21], end:[6,20]},
+  {name:'Близнецы', icon:'♊', start:[5,21], end:[6,20]},
   {name:'Рак', icon:'♋', start:[6,21], end:[7,22]},
-  {name:'Лев', icon:'♌', start:[7,23], end:[8,22]},
+  {name:'Лев', icon:'', start:[7,23], end:[8,22]},
   {name:'Дева', icon:'♍', start:[8,23], end:[9,22]},
-  {name:'Весы', icon:'', start:[9,23], end:[10,22]},
-  {name:'Скорпион', icon:'♏', start:[10,23], end:[11,21]},
+  {name:'Весы', icon:'♎', start:[9,23], end:[10,22]},
+  {name:'Скорпион', icon:'', start:[10,23], end:[11,21]},
   {name:'Стрелец', icon:'♐', start:[11,22], end:[12,21]},
   {name:'Козерог', icon:'♑', start:[12,22], end:[12,31]}
 ];
@@ -541,13 +548,13 @@ function submitIdea() {
   }
   
   const emojis = {
-    природа: ['', '🍄', '', '🏞️'],
-    спорт: ['🏃', '🚴', '', '🏊'],
-    творчество: ['🎨', '🎲', '🎤', '📸'],
-    еда: ['🍕', '☕', '🍰', '🍽️'],
+    природа: ['🌲', '🍄', '🌸', '🏞️'],
+    спорт: ['🏃', '', '🎳', '🏊'],
+    творчество: ['🎨', '', '🎤', '📸'],
+    еда: ['🍕', '☕', '🍰', '️'],
     культура: ['🏛️', '🎬', '📚', '🎭'],
-    активный: ['🎯', '🎮', '🎡', '🎪'],
-    волонтёрство: ['🤝', '🌿', '🐕', ''],
+    активный: ['', '🎮', '', '🎪'],
+    волонтёрство: ['🤝', '🌿', '🐕', '🌳'],
     другое: ['✨', '💫', '💖', '🌟']
   };
   
