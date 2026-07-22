@@ -35,7 +35,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
 .city-bar{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 1.5rem}
 .city-bar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
 .city-label{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
-.city-select{padding:8px 16px;border:2px solid var(--border);border-radius:20px;font-family:'Raleway',sans-serif;font-size:14px;font-weight:600;color:var(--text);background:var(--bg);cursor:pointer;outline:none;transition:border .15s}
+.city-select{padding:8px 16px;border:2px solid var(--border);border-radius:20px;font-family:'Raleway',sans-serif;font-size:14px;font-weight:600;color:var(--text);background:var(--bg);cursor:pointer;outline:none;transition:border .15s;max-width:300px}
 .city-select:focus{border-color:var(--rose)}
 .online-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;display:inline-block;margin-right:4px;box-shadow:0 0 0 2px rgba(76,175,80,.25)}
 .city-online{font-size:13px;color:var(--muted)}
@@ -181,6 +181,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
   .form-row{flex-direction:column}
   .profile-btn{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:26px}
   .modal{padding:2rem 1.5rem}
+  .city-select{max-width:100%}
 }
 </style>
 </head>
@@ -277,7 +278,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
     <div class="stats-bar">
       <span>🧔 Мужчин онлайн: <strong>450</strong></span>
       <span>👩 Женщин онлайн: <strong>520</strong></span>
-      <span> Всего идей: <strong id="totalIdeas">14</strong></span>
+      <span>🎉 Всего идей: <strong id="totalIdeas">14</strong></span>
     </div>
   </div>
 </header>
@@ -286,11 +287,159 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
   <div class="city-bar-inner">
     <span class="city-label">📍 Ваш город:</span>
     <select class="city-select" id="citySelect" onchange="updateCity()">
-      <option value="msk">Москва</option><option value="spb">Санкт-Петербург</option>
-      <option value="nsk">Новосибирск</option><option value="ekb">Екатеринбург</option>
-      <option value="kzn">Казань</option><option value="nnov">Нижний Новгород</option>
-      <option value="chel">Челябинск</option><option value="krd">Краснодар</option>
-      <option value="omsk">Омск</option><option value="rnd">Ростов-на-Дону</option>
+      <option value="msk">Москва</option>
+      <option value="spb">Санкт-Петербург</option>
+      <option value="novosibirsk">Новосибирск</option>
+      <option value="ekb">Екатеринбург</option>
+      <option value="kzn">Казань</option>
+      <option value="nnov">Нижний Новгород</option>
+      <option value="chel">Челябинск</option>
+      <option value="krd">Краснодар</option>
+      <option value="omsk">Омск</option>
+      <option value="rnd">Ростов-на-Дону</option>
+      <option value="ufa">Уфа</option>
+      <option value="krasnoyarsk">Красноярск</option>
+      <option value="voronezh">Воронеж</option>
+      <option value="perm">Пермь</option>
+      <option value="volgograd">Волгоград</option>
+      <option value="samara">Самара</option>
+      <option value="tyumen">Тюмень</option>
+      <option value="saransk">Саранск</option>
+      <option value="izhevsk">Ижевск</option>
+      <option value="ulyanovsk">Ульяновск</option>
+      <option value="orenburg">Оренбург</option>
+      <option value="barnaul">Барнаул</option>
+      <option value="vladivostok">Владивосток</option>
+      <option value="yaroslavl">Ярославль</option>
+      <option value="irkutsk">Иркутск</option>
+      <option value="habarovsk">Хабаровск</option>
+      <option value="makhachkala">Махачкала</option>
+      <option value="tomsk">Томск</option>
+      <option value="orenburg">Оренбург</option>
+      <option value="keмерово">Кемерово</option>
+      <option value="novokuznetsk">Новокузнецк</option>
+      <option value="ryazan">Рязань</option>
+      <option value="astrakhan">Астрахань</option>
+      <option value="naberezhnye-chelny">Набережные Челны</option>
+      <option value="penza">Пенза</option>
+      <option value="lipetsk">Липецк</option>
+      <option value="tula">Тула</option>
+      <option value="kirov">Киров</option>
+      <option value="cheboksary">Чебоксары</option>
+      <option value="kaliningrad">Калининград</option>
+      <option value="bryansk">Брянск</option>
+      <option value="kursk">Курск</option>
+      <option value="stavropol">Ставрополь</option>
+      <option value="magnitogorsk">Магнитогорск</option>
+      <option value="tver">Тверь</option>
+      <option value="ivanovo">Иваново</option>
+      <option value="belgorod">Белгород</option>
+      <option value="sochi">Сочи</option>
+      <option value="nizhnevartovsk">Нижневартовск</option>
+      <option value="arkhangelsk">Архангельск</option>
+      <option value="vladimir">Владимир</option>
+      <option value="kaluga">Калуга</option>
+      <option value="smolensk">Смоленск</option>
+      <option value="volzhsky">Волжский</option>
+      <option value="cherepovets">Череповец</option>
+      <option value="saransk">Саранск</option>
+      <option value="vologda">Вологда</option>
+      <option value="murmansk">Мурманск</option>
+      <option value="surgut">Сургут</option>
+      <option value="orel">Орёл</option>
+      <option value="yakutsk">Якутск</option>
+      <option value="grozny">Грозный</option>
+      <option value="kostroma">Кострома</option>
+      <option value="petrozavodsk">Петрозаводск</option>
+      <option value="novorossiysk">Новороссийск</option>
+      <option value="taganrog">Таганрог</option>
+      <option value="syktyvkar">Сыктывкар</option>
+      <option value="nizhnekamsk">Нижнекамск</option>
+      <option value="shchelkovo">Щёлково</option>
+      <option value="dzerzhinsk">Дзержинск</option>
+      <option value="orск">Орск</option>
+      <option value="angarsk">Ангарск</option>
+      <option value="starый-оскол">Старый Оскол</option>
+      <option value="veliky-novgorod">Великий Новгород</option>
+      <option value="prokopyevsk">Прокопьевск</option>
+      <option value="yuzhno-sakhalinsk">Южно-Сахалинск</option>
+      <option value="almetyevsk">Альметьевск</option>
+      <option value="elenogorsk">Еленогорск</option>
+      <option value="kerch">Керчь</option>
+      <option value="feodosiya">Феодосия</option>
+      <option value="yalta">Ялта</option>
+      <option value="evpatoria">Евпатория</option>
+      <option value="alupka">Алупка</option>
+      <option value="sudak">Судак</option>
+      <option value="bakhchisaray">Бахчисарай</option>
+      <option value="dzhankoy">Джанкой</option>
+      <option value="krasnoperekopsk">Красноперекопск</option>
+      <option value="armyansk">Армянск</option>
+      <option value="saki">Саки</option>
+      <option value="simferopol">Симферополь</option>
+      <option value="sevastopol">Севастополь</option>
+      <option value="donetsk">Донецк</option>
+      <option value="lugansk">Луганск</option>
+      <option value="makeevka">Макеевка</option>
+      <option value="gorlovka">Горловка</option>
+      <option value="kramatorsk">Краматорск</option>
+      <option value="slavyansk">Славянск</option>
+      <option value="berdyansk">Бердянск</option>
+      <option value="melitopol">Мелитополь</option>
+      <option value="energodar">Энергодар</option>
+      <option value="novaya-kakhovka">Новая Каховка</option>
+      <option value="kherson">Херсон</option>
+      <option value="zaporozhye">Запорожье</option>
+      <option value="mariupol">Мариуполь</option>
+      <option value="lisichansk">Лисичанск</option>
+      <option value="severodonetsk">Северодонецк</option>
+      <option value="alchevsk">Алчевск</option>
+      <option value="kadyievka">Кадиевка</option>
+      <option value="antratsyt">Антрацит</option>
+      <option value="rovnoe">Ровеньки</option>
+      <option value="bryanka">Брянка</option>
+      <option value="stakhanov">Стаханов</option>
+      <option value="perevalsk">Перевальск</option>
+      <option value="debaltsevo">Дебальцево</option>
+      <option value="svatovo">Сватово</option>
+      <option value="starobelsk">Старобельск</option>
+      <option value="novoaydar">Новоайдар</option>
+      <option value="marovka">Марковка</option>
+      <option value="belovodsk">Беловодск</option>
+      <option value="pavlograd">Павлоград</option>
+      <option value="sinelnikovo">Синельниково</option>
+      <option value="pershotravensk">Першотравенск</option>
+      <option value="ternivka">Терновка</option>
+      <option value="vilnohirsk">Вильногорск</option>
+      <option value="zhovti-vody">Жёлтые Воды</option>
+      <option value="apostolove">Апостолово</option>
+      <option value="marganets">Марганец</option>
+      <option value="nikopol">Никополь</option>
+      <option value="novomoskovsk">Новомосковск</option>
+      <option value="pidgorodne">Подгородное</option>
+      <option value="pereshchepyne">Перещепино</option>
+      <option value="yuzhne">Южное</option>
+      <option value="bilyaivka">Беляевка</option>
+      <option value="ovidiopol">Овидиополь</option>
+      <option value="rozdilna">Раздельная</option>
+      <option value="kiliya">Килия</option>
+      <option value="izmail">Измаил</option>
+      <option value="bolgrad">Болград</option>
+      <option value="arciz">Арциз</option>
+      <option value="tatarbunary">Татарбунары</option>
+      <option value="sarata">Сарата</option>
+      <option value="limanske">Лиманское</option>
+      <option value="shiryaеve">Ширяево</option>
+      <option value="velika-mykhailivka">Великая Михайловка</option>
+      <option value="zakharivka">Захарьевка</option>
+      <option value="frunzivka">Фрунзовка</option>
+      <option value="lyubashivka">Любашёвка</option>
+      <option value="mykolaivka">Николаевка</option>
+      <option value="berezivka">Березовка</option>
+      <option value="ivanivka">Ивановка</option>
+      <option value="bilhorod-dnistrovskyi">Белгород-Днестровский</option>
+      <option value="reni">Рени</option>
+      <option value="vykove">Вилково</option>
     </select>
     <span class="city-online"><span class="online-dot"></span><span id="cityOnline">970 человек в Москве</span></span>
   </div>
@@ -343,7 +492,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
     <div class="profile-header">
       <div class="profile-photo-wrap">
         <img id="profilePhotoPreview" class="profile-photo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23E0B0BE'/%3E%3Ctext x='50' y='60' font-size='40' text-anchor='middle' fill='%23fff'%3E👤%3C/text%3E%3C/svg%3E" alt="Фото">
-        <label class="photo-upload-label" for="photoUpload">📷</label>
+        <label class="photo-upload-label" for="photoUpload"></label>
         <input type="file" id="photoUpload" class="photo-upload-input" accept="image/*" onchange="handlePhotoUpload(event)">
       </div>
     </div>
@@ -354,7 +503,7 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
       </div>
       <div class="form-row">
         <div class="form-group"><label>Пол</label><select id="prof-gender"><option value="f">Женщина</option><option value="m">Мужчина</option><option value="x">Не указывать</option></select></div>
-        <div class="form-group"><label>Город</label><select id="prof-city"><option value="msk">Москва</option><option value="spb">Санкт-Петербург</option><option value="nsk">Новосибирск</option><option value="ekb">Екатеринбург</option><option value="kzn">Казань</option><option value="rnd">Ростов-на-Дону</option></select></div>
+        <div class="form-group"><label>Город</label><select id="prof-city"><option value="msk">Москва</option><option value="spb">Санкт-Петербург</option><option value="novosibirsk">Новосибирск</option><option value="ekb">Екатеринбург</option><option value="kzn">Казань</option><option value="nnov">Нижний Новгород</option><option value="chel">Челябинск</option><option value="krd">Краснодар</option><option value="omsk">Омск</option><option value="rnd">Ростов-на-Дону</option><option value="ufa">Уфа</option><option value="krasnoyarsk">Красноярск</option><option value="voronezh">Воронеж</option><option value="perm">Пермь</option><option value="volgograd">Волгоград</option><option value="samara">Самара</option><option value="tyumen">Тюмень</option><option value="izhevsk">Ижевск</option><option value="ulyanovsk">Ульяновск</option><option value="orenburg">Оренбург</option><option value="barnaul">Барнаул</option><option value="vladivostok">Владивосток</option><option value="yaroslavl">Ярославль</option><option value="irkutsk">Иркутск</option><option value="habarovsk">Хабаровск</option><option value="makhachkala">Махачкала</option><option value="tomsk">Томск</option><option value="keмерово">Кемерово</option><option value="novokuznetsk">Новокузнецк</option><option value="ryazan">Рязань</option><option value="astrakhan">Астрахань</option><option value="naberezhnye-chelny">Набережные Челны</option><option value="penza">Пенза</option><option value="lipetsk">Липецк</option><option value="tula">Тула</option><option value="kirov">Киров</option><option value="cheboksary">Чебоксары</option><option value="kaliningrad">Калининград</option><option value="bryansk">Брянск</option><option value="kursk">Курск</option><option value="stavropol">Ставрополь</option><option value="magnitogorsk">Магнитогорск</option><option value="tver">Тверь</option><option value="ivanovo">Иваново</option><option value="belgorod">Белгород</option><option value="sochi">Сочи</option><option value="nizhnevartovsk">Нижневартовск</option><option value="arkhangelsk">Архангельск</option><option value="vladimir">Владимир</option><option value="kaluga">Калуга</option><option value="smolensk">Смоленск</option><option value="volzhsky">Волжский</option><option value="cherepovets">Череповец</option><option value="vologda">Вологда</option><option value="murmansk">Мурманск</option><option value="surgut">Сургут</option><option value="orel">Орёл</option><option value="yakutsk">Якутск</option><option value="grozny">Грозный</option><option value="kostroma">Кострома</option><option value="petrozavodsk">Петрозаводск</option><option value="novorossiysk">Новороссийск</option><option value="taganrog">Таганрог</option><option value="syktyvkar">Сыктывкар</option><option value="nizhnekamsk">Нижнекамск</option><option value="shchelkovo">Щёлково</option><option value="dzerzhinsk">Дзержинск</option><option value="angarsk">Ангарск</option><option value="veliky-novgorod">Великий Новгород</option><option value="yuzhno-sakhalinsk">Южно-Сахалинск</option><option value="almetyevsk">Альметьевск</option><option value="kerch">Керчь</option><option value="feodosiya">Феодосия</option><option value="yalta">Ялта</option><option value="evpatoria">Евпатория</option><option value="alupka">Алупка</option><option value="sudak">Судак</option><option value="bakhchisaray">Бахчисарай</option><option value="dzhankoy">Джанкой</option><option value="krasnoperekopsk">Красноперекопск</option><option value="armyansk">Армянск</option><option value="saki">Саки</option><option value="simferopol">Симферополь</option><option value="sevastopol">Севастополь</option><option value="donetsk">Донецк</option><option value="lugansk">Луганск</option><option value="makeevka">Макеевка</option><option value="gorlovka">Горловка</option><option value="kramatorsk">Краматорск</option><option value="slavyansk">Славянск</option><option value="berdyansk">Бердянск</option><option value="melitopol">Мелитополь</option><option value="energodar">Энергодар</option><option value="novaya-kakhovka">Новая Каховка</option><option value="kherson">Херсон</option><option value="zaporozhye">Запорожье</option><option value="mariupol">Мариуполь</option><option value="lisichansk">Лисичанск</option><option value="severodonetsk">Северодонецк</option><option value="alchevsk">Алчевск</option><option value="kadyievka">Кадиевка</option><option value="antratsyt">Антрацит</option><option value="rovnoe">Ровеньки</option><option value="bryanka">Брянка</option><option value="stakhanov">Стаханов</option><option value="perevalsk">Перевальск</option><option value="debaltsevo">Дебальцево</option><option value="svatovo">Сватово</option><option value="starobelsk">Старобельск</option><option value="novoaydar">Новоайдар</option><option value="marovka">Марковка</option><option value="belovodsk">Беловодск</option><option value="pavlograd">Павлоград</option><option value="sinelnikovo">Синельниково</option><option value="pershotravensk">Першотравенск</option><option value="ternivka">Терновка</option><option value="vilnohirsk">Вильногорск</option><option value="zhovti-vody">Жёлтые Воды</option><option value="apostolove">Апостолово</option><option value="marganets">Марганец</option><option value="nikopol">Никополь</option><option value="novomoskovsk">Новомосковск</option><option value="pidgorodne">Подгородное</option><option value="pereshchepyne">Перещепино</option><option value="yuzhne">Южное</option><option value="bilyaivka">Беляевка</option><option value="ovidiopol">Овидиополь</option><option value="rozdilna">Раздельная</option><option value="kiliya">Килия</option><option value="izmail">Измаил</option><option value="bolgrad">Болград</option><option value="arciz">Арциз</option><option value="tatarbunary">Татарбунары</option><option value="sarata">Сарата</option><option value="limanske">Лиманское</option><option value="shiryaеve">Ширяево</option><option value="velika-mykhailivka">Великая Михайловка</option><option value="zakharivka">Захарьевка</option><option value="frunzivka">Фрунзовка</option><option value="lyubashivka">Любашёвка</option><option value="mykolaivka">Николаевка</option><option value="berezivka">Березовка</option><option value="ivanivka">Ивановка</option><option value="bilhorod-dnistrovskyi">Белгород-Днестровский</option><option value="reni">Рени</option><option value="vykove">Вилково</option></select></div>
       </div>
       <div class="form-group"><label>О себе</label><textarea id="prof-about" placeholder="Расскажите о себе..." style="min-height:80px"></textarea></div>
       <button class="submit-btn" onclick="saveProfile()">💾 Сохранить профиль</button>
@@ -378,16 +527,15 @@ header{background:linear-gradient(135deg,var(--rose-lighter) 0%,var(--rose-light
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY = 'lh_ideas_v4';
-const STORAGE_KEY_JOINED = 'lh_joined_v4';
-const STORAGE_KEY_PROFILE = 'lh_profile_v4';
+const STORAGE_KEY = 'lh_ideas_v5';
+const STORAGE_KEY_JOINED = 'lh_joined_v5';
+const STORAGE_KEY_PROFILE = 'lh_profile_v5';
 
 let userProfile = JSON.parse(localStorage.getItem(STORAGE_KEY_PROFILE)) || null;
 
-// 14 ИДЕЙ - ТИХАЯ ОХОТА УБРАНА
 let ideas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
   {id:1, emoji:'🎣', title:'Рыбалка на рассвете', sub:'Тишина и чай у воды', cat:'природа', participants:8, chat:[{name:'Андрей К.',text:'Встречаемся в 5:30 на берегу',g:'m',age:38},{name:'Елена Т.',text:'Я первый раз, но очень хочу!',g:'f',age:29}]},
-  {id:2, emoji:'', title:'Велопрогулка', sub:'По набережной 10 км', cat:'спорт', participants:16, chat:[{name:'Максим Л.',text:'Маршрут простой, без горок',g:'m',age:27},{name:'Юлия Н.',text:'Отлично! Я новичок',g:'f',age:24}]},
+  {id:2, emoji:'🚴', title:'Велопрогулка', sub:'По набережной 10 км', cat:'спорт', participants:16, chat:[{name:'Максим Л.',text:'Маршрут простой, без горок',g:'m',age:27},{name:'Юлия Н.',text:'Отлично! Я новичок',g:'f',age:24}]},
   {id:3, emoji:'️', title:'Экскурсия по храмам', sub:'Загородная поездка', cat:'культура', participants:20, chat:[{name:'Ольга С.',text:'Посетим 3 старинных храма',g:'f',age:45},{name:'Сергей В.',text:'Возьму фотоаппарат 📷',g:'m',age:50}]},
   {id:4, emoji:'🍳', title:'Кулинарный мастер-класс', sub:'Готовим итальянскую пасту', cat:'творчество', participants:12, chat:[{name:'Мария Д.',text:'Готовим пасту и тирамису!',g:'f',age:30},{name:'Павел Г.',text:'Обожаю итальянскую кухню',g:'m',age:33}]},
   {id:5, emoji:'🌿', title:'Эко-субботник', sub:'Уборка парка + чай', cat:'волонтёрство', participants:12, chat:[{name:'Олег П.',text:'Инвентарь выдадим',g:'m',age:31},{name:'Марина С.',text:'Я возьму печенье 🍪',g:'f',age:26}]},
@@ -438,7 +586,7 @@ function renderIdeas(){
       <div class="idea-content">
         <div class="idea-text">${i.title}</div>
         <div class="idea-sub">${i.sub}</div>
-        <div class="idea-participants"> ${i.participants} человек · 💬 ${i.chat.length>0?`Чат (${i.chat.length})`:'Нет сообщений'}</div>
+        <div class="idea-participants">👥 ${i.participants} человек · 💬 ${i.chat.length>0?`Чат (${i.chat.length})`:'Нет сообщений'}</div>
       </div>
       <div class="chat-indicator">💬</div>
       <div class="click-hint">Нажмите для чата →</div>
@@ -448,15 +596,96 @@ function renderIdeas(){
   });
 }
 
-const CITY_DATA={msk:{name:'Москве',count:970},spb:{name:'Санкт-Петербурге',count:640},nsk:{name:'Новосибирске',count:210},ekb:{name:'Екатеринбурге',count:280},kzn:{name:'Казани',count:190},nnov:{name:'Нижнем Новгороде',count:150},chel:{name:'Челябинске',count:130},krd:{name:'Краснодаре',count:175},omsk:{name:'Омске',count:110},rnd:{name:'Ростове-на-Дону',count:160}};
-function updateCity(){const v=document.getElementById('citySelect').value;const d=CITY_DATA[v];document.getElementById('cityOnline').textContent=`${d.count} человек в ${d.name}`}
+const CITY_DATA={
+  msk:{name:'Москве',count:970},spb:{name:'Санкт-Петербурге',count:640},
+  novosibirsk:{name:'Новосибирске',count:210},ekb:{name:'Екатеринбурге',count:280},
+  kzn:{name:'Казани',count:190},nnov:{name:'Нижнем Новгороде',count:150},
+  chel:{name:'Челябинске',count:130},krd:{name:'Краснодаре',count:175},
+  omsk:{name:'Омске',count:110},rnd:{name:'Ростове-на-Дону',count:160},
+  ufa:{name:'Уфе',count:140},krasnoyarsk:{name:'Красноярске',count:120},
+  voronezh:{name:'Воронеже',count:100},perm:{name:'Перми',count:95},
+  volgograd:{name:'Волгограде',count:105},samara:{name:'Самаре',count:115},
+  tyumen:{name:'Тюмени',count:90},izhevsk:{name:'Ижевске',count:70},
+  ulyanovsk:{name:'Ульяновске',count:65},orenburg:{name:'Оренбурге',count:75},
+  barnaul:{name:'Барнауле',count:60},vladivostok:{name:'Владивостоке',count:85},
+  yaroslavl:{name:'Ярославле',count:70},irkutsk:{name:'Иркутске',count:65},
+  habarovsk:{name:'Хабаровске',count:70},makhachkala:{name:'Махачкале',count:55},
+  tomsk:{name:'Томске',count:60},keмерово:{name:'Кемерово',count:55},
+  novokuznetsk:{name:'Новокузнецке',count:50},ryazan:{name:'Рязани',count:60},
+  astrakhan:{name:'Астрахани',count:50},naberezhnye-chelny:{name:'Набережных Челнах',count:45},
+  penza:{name:'Пензе',count:50},lipetsk:{name:'Липецке',count:45},
+  tula:{name:'Туле',count:55},kirov:{name:'Кирове',count:45},
+  cheboksary:{name:'Чебоксарах',count:40},kaliningrad:{name:'Калининграде',count:50},
+  bryansk:{name:'Брянске',count:40},kursk:{name:'Курске',count:45},
+  stavropol:{name:'Ставрополе',count:50},magnitogorsk:{name:'Магнитогорске',count:40},
+  tver:{name:'Твери',count:45},ivanovo:{name:'Иваново',count:40},
+  belgorod:{name:'Белгороде',count:45},sochi:{name:'Сочи',count:80},
+  nizhnevartovsk:{name:'Нижневартовске',count:35},arkhangelsk:{name:'Архангельске',count:40},
+  vladimir:{name:'Владимире',count:40},kaluga:{name:'Калуге',count:40},
+  smolensk:{name:'Смоленске',count:35},volzhsky:{name:'Волжском',count:30},
+  cherepovets:{name:'Череповце',count:35},vologda:{name:'Вологде',count:35},
+  murmansk:{name:'Мурманске',count:40},surgut:{name:'Сургуте',count:45},
+  orel:{name:'Орле',count:35},yakutsk:{name:'Якутске',count:30},
+  grozny:{name:'Грозном',count:35},kostroma:{name:'Костроме',count:30},
+  petrozavodsk:{name:'Петрозаводске',count:35},novorossiysk:{name:'Новороссийске',count:40},
+  taganrog:{name:'Таганроге',count:35},syktyvkar:{name:'Сыктывкаре',count:30},
+  nizhnekamsk:{name:'Нижнекамске',count:30},shchelkovo:{name:'Щёлково',count:25},
+  dzerzhinsk:{name:'Дзержинске',count:25},angarsk:{name:'Ангарске',count:25},
+  veliky-novgorod:{name:'Великом Новгороде',count:30},yuzhno-sakhalinsk:{name:'Южно-Сахалинске',count:25},
+  almetyevsk:{name:'Альметьевске',count:25},kerch:{name:'Керчи',count:30},
+  feodosiya:{name:'Феодосии',count:25},yalta:{name:'Ялте',count:35},
+  evpatoria:{name:'Евпатории',count:25},alupka:{name:'Алупке',count:15},
+  sudak:{name:'Судаке',count:20},bakhchisaray:{name:'Бахчисарае',count:15},
+  dzhankoy:{name:'Джанкое',count:20},krasnoperekopsk:{name:'Красноперекопске',count:15},
+  armyansk:{name:'Армянске',count:15},saki:{name:'Саках',count:20},
+  simferopol:{name:'Симферополе',count:50},sevastopol:{name:'Севастополе',count:60},
+  donetsk:{name:'Донецке',count:80},lugansk:{name:'Луганске',count:60},
+  makeevka:{name:'Макеевке',count:40},gorlovka:{name:'Горловке',count:35},
+  kramatorsk:{name:'Краматорске',count:30},slavyansk:{name:'Славянске',count:25},
+  berdyansk:{name:'Бердянске',count:25},melitopol:{name:'Мелитополе',count:30},
+  energodar:{name:'Энергодаре',count:20},novaya-kakhovka:{name:'Новой Каховке',count:20},
+  kherson:{name:'Херсоне',count:45},zaporozhye:{name:'Запорожье',count:55},
+  mariupol:{name:'Мариуполе',count:50},lisichansk:{name:'Лисичанске',count:20},
+  severodonetsk:{name:'Северодонецке',count:25},alchevsk:{name:'Алчевске',count:20},
+  kadyievka:{name:'Кадиевке',count:15},antratsyt:{name:'Антраците',count:15},
+  rovnoe:{name:'Ровеньках',count:15},bryanka:{name:'Брянке',count:15},
+  stakhanov:{name:'Стаханове',count:15},perevalsk:{name:'Перевальске',count:10},
+  debaltsevo:{name:'Дебальцево',count:15},svatovo:{name:'Сватово',count:10},
+  starobelsk:{name:'Старобельске',count:15},novoaydar:{name:'Новоайдаре',count:10},
+  marovka:{name:'Марковке',count:10},belovodsk:{name:'Беловодске',count:10},
+  pavlograd:{name:'Павлограде',count:20},sinelnikovo:{name:'Синельниково',count:15},
+  pershotravensk:{name:'Першотравенске',count:10},ternivka:{name:'Терновке',count:10},
+  vilnohirsk:{name:'Вильногорске',count:10},zhovti-vody:{name:'Жёлтых Водах',count:10},
+  apostolove:{name:'Апостолово',count:10},marganets:{name:'Марганце',count:10},
+  nikopol:{name:'Никополе',count:15},novomoskovsk:{name:'Новомосковске',count:15},
+  pidgorodne:{name:'Подгородном',count:10},pereshchepyne:{name:'Перещепино',count:10},
+  yuzhne:{name:'Южном',count:15},bilyaivka:{name:'Беляевке',count:10},
+  ovidiopol:{name:'Овидиополе',count:10},rozdilna:{name:'Раздельной',count:10},
+  kiliya:{name:'Килии',count:10},izmail:{name:'Измаиле',count:15},
+  bolgrad:{name:'Болграде',count:10},arciz:{name:'Арцизе',count:10},
+  tatarbunary:{name:'Татарбунарах',count:10},sarata:{name:'Сарате',count:10},
+  limanske:{name:'Лиманском',count:10},shiryaеve:{name:'Ширяево',count:10},
+  velika-mykhailivka:{name:'Великой Михайловке',count:10},zakharivka:{name:'Захарьевке',count:10},
+  frunzivka:{name:'Фрунзовке',count:10},lyubashivka:{name:'Любашёвке',count:10},
+  mykolaivka:{name:'Николаевке',count:10},berezivka:{name:'Березовке',count:10},
+  ivanivka:{name:'Ивановке',count:10},bilhorod-dnistrovskyi:{name:'Белгороде-Днестровском',count:15},
+  reni:{name:'Рени',count:10},vykove:{name:'Вилково',count:10}
+};
+
+function updateCity(){
+  const v=document.getElementById('citySelect').value;
+  const d=CITY_DATA[v];
+  if(d){
+    document.getElementById('cityOnline').textContent=`${d.count} человек в ${d.name}`;
+  }
+}
 
 function submitIdea(){
   const t=document.getElementById('idea-title').value.trim();
   const c=document.getElementById('idea-cat').value;
   const desc=document.getElementById('idea-desc').value.trim();
   if(!t){showToast('Введите название идеи','info');return}
-  const emojis={природа:['🌲','🍄','🌸','🏞️'],спорт:['🏃','🚴','','🏊'],творчество:['','🎲','🎤',''],еда:['🍕','☕','🍰','🍽️'],культура:['🏛️','🎬','📚','🎭'],активный:['🎯','🎮','🎡','🎪'],волонтёрство:['🤝','🌿','🐕','🌳'],другое:['✨','💫','💖','']};
+  const emojis={природа:['🌲','🍄','🌸','🏞️'],спорт:['🏃','🚴','🎳','🏊'],творчество:['🎨','🎲','','📸'],еда:['','☕','🍰','🍽️'],культура:['🏛️','','📚','🎭'],активный:['🎯','🎮','🎡','🎪'],волонтёрство:['🤝','🌿','🐕','🌳'],другое:['✨','💫','💖','🌟']};
   const emoji=emojis[c][Math.floor(Math.random()*4)];
   ideas.unshift({id:Date.now(),emoji,title:t,sub:desc||'Описание',cat,participants:1,chat:[]});
   saveData();renderIdeas();
